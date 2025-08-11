@@ -11,6 +11,8 @@ its dependencies.
 
 ## Setup
 
+The following describes a typical setup workflow for Linux. For additional configuration options or instructions for other platforms, please refer to the [official documentation](https://arm.github.io/ai-ml-sdk-for-vulkan/cloning.html).
+
 Install git-repo tool from <https://gerrit.googlesource.com/git-repo>
 
 ```bash
