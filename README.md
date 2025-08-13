@@ -16,9 +16,8 @@ The following describes a typical setup workflow for Linux. For additional confi
 Install git-repo tool from <https://gerrit.googlesource.com/git-repo>
 
 ```bash
-curl --create-dirs --output ~/.local/bin/repo
-https://storage.googleapis.com/git-repo-downloads/repo chmod +x
-~/.local/bin/repo
+curl --create-dirs --output ~/.local/bin/repo https://storage.googleapis.com/git-repo-downloads/repo
+chmod +x ~/.local/bin/repo
 ```
 
 In order to perform the checkout, use the following commands:
