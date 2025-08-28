@@ -99,6 +99,12 @@ runs:
       run: |
         python "$HOME\\.bin\\git-repo\\repo" sync
 
+    - name: repo sync (macOS/Linux)
+      if: runner.os != 'Windows'
+      shell: bash
+      run: |
+        python "$HOME/.bin/git-repo/repo" sync
+
     # Conditional overrides: Only checkout if owner/ref differs from defaults
     - name: Override ai-ml-sdk-for-vulkan (if changed)
       if: ${{ inputs.ai-ml-sdk-for-vulkan_owner != 'arm' || inputs.ai-ml-sdk-for-vulkan_revision != 'main' }}
@@ -135,9 +141,3 @@ runs:
         repository: ${{ inputs.ai-ml-emulation-layer-for-vulkan_owner }}/ai-ml-emulation-layer-for-vulkan
         ref: ${{ inputs.ai-ml-emulation-layer-for-vulkan_revision }}
         path: sw/emulation-layer
-
-    - name: repo sync (macOS/Linux)
-      if: runner.os != 'Windows'
-      shell: bash
-      run: |
-        python "$HOME/.bin/git-repo/repo" sync
