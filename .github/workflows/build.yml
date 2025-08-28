@@ -1,0 +1,104 @@
+name: Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      ai-ml-sdk-model-converter_owner:
+        description: Owner/org for ai-ml-sdk-model-converter
+        default: arm
+        required: false
+      ai-ml-sdk-model-converter_revision:
+        description: Revision for arm/ai-ml-sdk-model-converter
+        default: main
+        required: false
+      ai-ml-sdk-scenario-runner_owner:
+        description: Owner/org for ai-ml-sdk-scenario-runner
+        default: arm
+        required: false
+      ai-ml-sdk-scenario-runner_revision:
+        description: Revision for arm/ai-ml-sdk-scenario-runner
+        default: main
+        required: false
+      ai-ml-sdk-vgf-library_owner:
+        description: Owner/org for ai-ml-sdk-vgf-library
+        default: arm
+        required: false
+      ai-ml-sdk-vgf-library_revision:
+        description: Revision for arm/ai-ml-sdk-vgf-library
+        default: main
+        required: false
+      ai-ml-emulation-layer-for-vulkan_owner:
+        description: Owner/org for ai-ml-emulation-layer-for-vulkan
+        default: arm
+        required: false
+      ai-ml-emulation-layer-for-vulkan_revision:
+        description: Revision for arm/ai-ml-emulation-layer-for-vulkan
+        default: main
+        required: false
+      ai-ml-sdk-for-vulkan_owner:
+        description: Owner/org for ai-ml-sdk-for-vulkan
+        default: arm
+        required: false
+      ai-ml-sdk-for-vulkan_revision:
+        description: Revision for arm/ai-ml-sdk-for-vulkan
+        default: main
+        required: false
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 3 * * *' # Nightly at 03:00 UTC
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - ubuntu-24.04-arm
+          - macos-15
+          - windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          path: ./manifest
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Checkout and sync repos
+        uses: ./manifest/.github/actions/checkout-and-sync
+        with:
+          ai-ml-sdk-model-converter_owner: ${{ github.event.inputs.ai-ml-sdk-model-converter_owner || 'arm' }}
+          ai-ml-sdk-model-converter_revision: ${{ github.event.inputs.ai-ml-sdk-model-converter_revision || 'main' }}
+          ai-ml-sdk-scenario-runner_owner: ${{ github.event.inputs.ai-ml-sdk-scenario-runner_owner || 'arm' }}
+          ai-ml-sdk-scenario-runner_revision: ${{ github.event.inputs.ai-ml-sdk-scenario-runner_revision || 'main' }}
+          ai-ml-sdk-vgf-library_owner: ${{ github.event.inputs.ai-ml-sdk-vgf-library_owner || 'arm' }}
+          ai-ml-sdk-vgf-library_revision: ${{ github.event.inputs.ai-ml-sdk-vgf-library_revision || 'main' }}
+          ai-ml-emulation-layer-for-vulkan_owner: ${{ github.event.inputs.ai-ml-emulation-layer-for-vulkan_owner || 'arm' }}
+          ai-ml-emulation-layer-for-vulkan_revision: ${{ github.event.inputs.ai-ml-emulation-layer-for-vulkan_revision || 'main' }}
+          ai-ml-sdk-for-vulkan_owner: ${{ github.event.inputs.ai-ml-sdk-for-vulkan_owner || 'arm' }}
+          ai-ml-sdk-for-vulkan_revision: ${{ github.event.inputs.ai-ml-sdk-for-vulkan_revision || 'main' }}
+
+      - name: Build (macOS/Linux)
+        if: runner.os != 'Windows'
+        run: ./scripts/build.py
+
+      - name: Build (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          python scripts\build.py
