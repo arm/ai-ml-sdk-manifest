@@ -2,6 +2,18 @@ name: Checkout and Sync Repos
 description: Download repo tool, init manifest, apply owner/ref overrides via local manifest, and sync projects.
 
 inputs:
+  repo_groups:
+    description: "Group for 'repo init -g'"
+    required: false
+    default: all
+    type: choice
+    options:
+      - all
+      - model-converter
+      - scenario-runner
+      - emulation-layer
+      - vgf-lib
+
   ai-ml-sdk-model-converter_owner:
     description: GitHub owner/org for ai-ml-sdk-model-converter
     required: false
@@ -73,13 +85,13 @@ runs:
       if: runner.os == 'Windows'
       shell: pwsh
       run: |
-        python "$HOME\\.bin\\git-repo\\repo" init -u https://github.com/arm/ai-ml-sdk-manifest.git --depth=1
+        python "$HOME\\.bin\\git-repo\\repo" init -u https://github.com/arm/ai-ml-sdk-manifest.git --depth=1 -g ${{ inputs.repo_groups }}
 
     - name: repo init (macOS/Linux)
       if: runner.os != 'Windows'
       shell: bash
       run: |
-        python "$HOME/.bin/git-repo/repo" init -u https://github.com/arm/ai-ml-sdk-manifest.git --depth=1
+        python "$HOME/.bin/git-repo/repo" init -u https://github.com/arm/ai-ml-sdk-manifest.git --depth=1 -g ${{ inputs.repo_groups }}
 
     - name: repo sync (Windows)
       if: runner.os == 'Windows'
@@ -129,4 +141,3 @@ runs:
       shell: bash
       run: |
         python "$HOME/.bin/git-repo/repo" sync
-
