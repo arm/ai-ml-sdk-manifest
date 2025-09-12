@@ -1,0 +1,102 @@
+# SPDX-FileCopyrightText: Copyright 2024-2025 Arm Limited and/or its affiliates <open-source-office@arm.com>
+# SPDX-License-Identifier: Apache-2.0
+name: Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      ai-ml-sdk-model-converter_owner:
+        description: Owner/org for ai-ml-sdk-model-converter
+        default: arm
+        required: false
+      ai-ml-sdk-model-converter_revision:
+        description: Revision for arm/ai-ml-sdk-model-converter
+        default: main
+        required: false
+      ai-ml-sdk-scenario-runner_owner:
+        description: Owner/org for ai-ml-sdk-scenario-runner
+        default: arm
+        required: false
+      ai-ml-sdk-scenario-runner_revision:
+        description: Revision for arm/ai-ml-sdk-scenario-runner
+        default: main
+        required: false
+      ai-ml-sdk-vgf-library_owner:
+        description: Owner/org for ai-ml-sdk-vgf-library
+        default: arm
+        required: false
+      ai-ml-sdk-vgf-library_revision:
+        description: Revision for arm/ai-ml-sdk-vgf-library
+        default: main
+        required: false
+      ai-ml-emulation-layer-for-vulkan_owner:
+        description: Owner/org for ai-ml-emulation-layer-for-vulkan
+        default: arm
+        required: false
+      ai-ml-emulation-layer-for-vulkan_revision:
+        description: Revision for arm/ai-ml-emulation-layer-for-vulkan
+        default: main
+        required: false
+      ai-ml-sdk-for-vulkan_owner:
+        description: Owner/org for ai-ml-sdk-for-vulkan
+        default: arm
+        required: false
+      ai-ml-sdk-for-vulkan_revision:
+        description: Revision for arm/ai-ml-sdk-for-vulkan
+        default: main
+        required: false
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 3 * * *' # Nightly at 03:00 UTC
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - ubuntu-24.04-arm
+          - macos-15
+          - windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          path: ./manifest
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Checkout and sync repos
+        uses: ./manifest/.github/actions/checkout
+        with:
+          overrides: |
+            ${{ github.event.inputs.ai-ml-sdk-model-converter_owner || 'arm' }}/ai-ml-sdk-model-converter@${{ github.event.inputs.ai-ml-sdk-model-converter_revision || 'main' }}
+            ${{ github.event.inputs.ai-ml-sdk-scenario-runner_owner || 'arm' }}/ai-ml-sdk-scenario-runner@${{ github.event.inputs.ai-ml-sdk-scenario-runner_revision || 'main' }}
+            ${{ github.event.inputs.ai-ml-sdk-vgf-library_owner || 'arm' }}/ai-ml-sdk-vgf-library@${{ github.event.inputs.ai-ml-sdk-vgf-library_revision || 'main' }}
+            ${{ github.event.inputs.ai-ml-emulation-layer-for-vulkan_owner || 'arm' }}/ai-ml-emulation-layer-for-vulkan@${{ github.event.inputs.ai-ml-emulation-layer-for-vulkan_revision || 'main' }}
+            ${{ github.event.inputs.ai-ml-sdk-for-vulkan_owner || 'arm' }}/ai-ml-sdk-for-vulkan@${{ github.event.inputs.ai-ml-sdk-for-vulkan_revision || 'main' }}
+
+      - name: Build (macOS/Linux)
+        if: runner.os != 'Windows'
+        run: ./scripts/build.py
+
+      - name: Build (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          python scripts\build.py
