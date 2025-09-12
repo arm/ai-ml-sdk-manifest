@@ -49,3 +49,16 @@ The sub-directory `sw` contains the ML SDK for Vulkan® components projects. The
 sub-directory `dependencies` contains all the software dependencies necessary to
 build the ML SDK for Vulkan®. The `docs` folder contains the ML SDK for Vulkan®
 documentation.
+
+## Security
+
+If you believe you have discovered a security issue please refer to the
+[Security Section](SECURITY.md)
+
+## Trademark notice
+
+Arm® is a registered trademarks of Arm Limited (or its subsidiaries) in the US
+and/or elsewhere.
+
+Khronos®, Vulkan® and SPIR-V™ are registered trademarks of the
+[Khronos® Group](https://www.khronos.org/legal/trademarks).
