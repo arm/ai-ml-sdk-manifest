@@ -17,7 +17,7 @@ SPDX-License-Identifier: Apache-2.0
   <project path="dependencies/Vulkan-Headers" remote="github" name="KhronosGroup/Vulkan-Headers" revision="refs/tags/vulkan-sdk-1.4.321.0" groups="all scenario-runner emulation-layer"/>
 
   <project path="dependencies/llvm-project" remote="github" name="llvm/llvm-project" revision="802ea0eb78f7c974d4097c38587f4c207451d7ee" upstream="main" groups="all model-converter"/>
-  <project path="dependencies/tosa_mlir_translator" remote="gitlab-arm" name="tosa/tosa-mlir-translator" revision="refs/tags/v2025.07.0" groups="all model-converter" sync-s="true" />
+  <project path="dependencies/tosa_mlir_translator" remote="gitlab-arm" name="tosa/tosa-mlir-translator" revision="refs/tags/v2025.07.1" groups="all model-converter" sync-s="true" />
 
   <project path="dependencies/argparse" remote="github" name="p-ranav/argparse" revision="refs/tags/v3.1" groups="all scenario-runner model-converter vgf-lib"/>
   <project path="dependencies/flatbuffers" remote="github" name="google/flatbuffers" revision="refs/tags/v23.5.26" groups="all scenario-runner model-converter vgf-lib"/>
