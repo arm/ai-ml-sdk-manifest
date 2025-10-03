@@ -1,0 +1,112 @@
+# SPDX-FileCopyrightText: Copyright 2024-2025 Arm Limited
+# SPDX-License-Identifier: Apache-2.0
+name: Checkout
+description: Checkout and sync all the ai ml sdk
+
+inputs:
+  repo_groups:
+    description: "Group for 'repo init -g' (all | model-converter | scenario-runner | emulation-layer | vgf-lib)"
+    required: false
+    default: all
+
+  overrides:
+    description: |
+      Optional overrides, one per line, format: owner/repo@ref
+      Examples:
+        myorg/ai-ml-sdk-for-vulkan@abcd1234
+        alice/ai-ml-sdk-scenario-runner@feature/x
+        arm/ai-ml-sdk-vgf-library@4063e1626aa14771816d5bf49c14230b40e66658
+      Notes:
+        - Only the following repos are recognized: ai-ml-sdk-for-vulkan, ai-ml-sdk-model-converter, ai-ml-sdk-scenario-runner, ai-ml-sdk-vgf-library, ai-ml-emulation-layer-for-vulkan
+        - Omit this input to use manifest defaults (no overrides applied).
+    required: false
+    default: ""
+
+runs:
+  using: composite
+  steps:
+    - name: Setup Python 3.11
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
+
+    - name: Enable long paths and download repo (Windows)
+      if: runner.os == 'Windows'
+      shell: pwsh
+      run: |
+        $ErrorActionPreference = "Stop"
+        Set-StrictMode -Version Latest
+        Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem" -Name "LongPathsEnabled" -Value 1
+        git config --global core.longpaths true
+        $repoDir = "$HOME\.bin\git-repo"
+        $repoBin = "$repoDir\repo"
+        New-Item -ItemType Directory -Force -Path $repoDir | Out-Null
+        curl.exe -fL --retry 3 --retry-delay 3 "https://storage.googleapis.com/git-repo-downloads/repo" -o $repoBin
+
+    - name: Download repo tool (macOS/Linux)
+      if: runner.os != 'Windows'
+      shell: bash
+      run: |
+        set -euo pipefail
+        mkdir -p "$HOME/.bin/git-repo"
+        curl -fL --retry 3 --retry-delay 3 https://storage.googleapis.com/git-repo-downloads/repo -o "$HOME/.bin/git-repo/repo"
+        chmod +x "$HOME/.bin/git-repo/repo"
+
+    - name: repo init (Windows)
+      if: runner.os == 'Windows'
+      shell: pwsh
+      run: |
+        $ErrorActionPreference = "Stop"
+        Set-StrictMode -Version Latest
+        $valid = @('all','model-converter','scenario-runner','emulation-layer','vgf-lib')
+        $grp = '${{ inputs.repo_groups }}'
+        if ($valid -notcontains $grp) {
+          Write-Error "Invalid repo_groups: $grp. Allowed: $($valid -join ', ')"
+          exit 2
+        }
+        python "$HOME\.bin\git-repo\repo" init -u https://github.com/arm/ai-ml-sdk-manifest.git --depth=1 -g $grp
+
+    - name: repo init (macOS/Linux)
+      if: runner.os != 'Windows'
+      shell: bash
+      run: |
+        set -euo pipefail
+        case "${{ inputs.repo_groups }}" in
+          all|model-converter|scenario-runner|emulation-layer|vgf-lib) ;;
+          *) echo "Invalid repo_groups: ${{ inputs.repo_groups }}. Allowed: all, model-converter, scenario-runner, emulation-layer, vgf-lib" >&2; exit 2;;
+        esac
+        python "$HOME/.bin/git-repo/repo" init -u https://github.com/arm/ai-ml-sdk-manifest.git --depth=1 -g "${{ inputs.repo_groups }}"
+
+    - name: repo sync (Windows)
+      if: runner.os == 'Windows'
+      shell: pwsh
+      run: |
+        $ErrorActionPreference = "Stop"
+        Set-StrictMode -Version Latest
+        python "$HOME\.bin\git-repo\repo" sync
+
+    - name: repo sync (macOS/Linux)
+      if: runner.os != 'Windows'
+      shell: bash
+      run: |
+        set -euo pipefail
+        python "$HOME/.bin/git-repo/repo" sync
+
+    - name: Apply overrides (Windows)
+      if: runner.os == 'Windows'
+      shell: pwsh
+      env:
+        OVERRIDES: ${{ inputs.overrides }}
+      run: |
+        $ErrorActionPreference = "Stop"
+        Set-StrictMode -Version Latest
+        python "$env:GITHUB_ACTION_PATH\apply_overrides.py"
+
+    - name: Apply overrides (macOS/Linux)
+      if: runner.os != 'Windows'
+      shell: bash
+      env:
+        OVERRIDES: ${{ inputs.overrides }}
+      run: |
+        set -euo pipefail
+        python "$GITHUB_ACTION_PATH/apply_overrides.py"
