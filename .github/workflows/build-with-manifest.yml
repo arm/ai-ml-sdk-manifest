@@ -10,12 +10,18 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+
 jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/arm/ml-sdk-linux-amd64:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
     env:
       MANIFEST_URL: https://github.com/arm/ai-ml-sdk-manifest.git
       REPO_DIR: sdk
@@ -28,6 +34,7 @@ jobs:
         run: |
           mkdir -p $REPO_DIR && cd $REPO_DIR
 
+          # Initialize the default manifest state
           repo init -u $MANIFEST_URL
           repo sync --no-clone-bundle -j $(nproc)
 
