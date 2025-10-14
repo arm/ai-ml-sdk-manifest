@@ -1,0 +1,36 @@
+#
+# SPDX-FileCopyrightText: Copyright 2025 Arm Limited and/or its affiliates <open-source-office@arm.com>
+# SPDX-License-Identifier: Apache-2.0
+#
+name: Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/arm/ml-sdk-linux-amd64:latest
+    env:
+      MANIFEST_URL: https://github.com/arm/ai-ml-sdk-manifest.git
+      REPO_DIR: sdk
+
+    steps:
+      - name: Checkout this repo
+        uses: actions/checkout@v4
+
+      - name: Clone repositories
+        run: |
+          mkdir -p $REPO_DIR && cd $REPO_DIR
+
+          repo init -u $MANIFEST_URL
+          repo sync --no-clone-bundle -j $(nproc)
+
+      - name: Build SDK Root
+        working-directory: $REPO_DIR
+        run: ./scripts/build.py -j $(nproc)
