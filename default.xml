@@ -10,11 +10,13 @@ SPDX-License-Identifier: Apache-2.0
   <default sync-c="true" sync-tags="false"/>
 
   <!-- dependencies start -->
-  <project path="dependencies/glslang" remote="github" name="KhronosGroup/glslang" revision="refs/tags/vulkan-sdk-1.4.321.0" groups="all scenario-runner emulation-layer"/>
-  <project path="dependencies/SPIRV-Cross" remote="github" name="KhronosGroup/SPIRV-Cross" revision="refs/tags/vulkan-sdk-1.4.321.0" groups="all emulation-layer"/>
-  <project path="dependencies/SPIRV-Headers" remote="github" name="arm/SPIRV-Headers" revision="refs/tags/staging-2025-09-09" groups="all scenario-runner emulation-layer"/>
-  <project path="dependencies/SPIRV-Tools" remote="github" name="arm/SPIRV-Tools" revision="refs/tags/staging-2025-09-09" groups="all scenario-runner emulation-layer"/>
-  <project path="dependencies/Vulkan-Headers" remote="github" name="KhronosGroup/Vulkan-Headers" revision="refs/tags/vulkan-sdk-1.4.321.0" groups="all scenario-runner emulation-layer"/>
+  <project path="dependencies/glslang" remote="github" name="KhronosGroup/glslang" revision="refs/tags/vulkan-sdk-1.4.328.1" groups="all scenario-runner emulation-layer"/>
+  <project path="dependencies/SPIRV-Cross" remote="github" name="KhronosGroup/SPIRV-Cross" revision="refs/tags/vulkan-sdk-1.4.328.1" groups="all emulation-layer"/>
+  <project path="dependencies/SPIRV-Headers" remote="github" name="arm/SPIRV-Headers" revision="staging" groups="all scenario-runner emulation-layer"/>
+  <project path="dependencies/SPIRV-Tools" remote="github" name="arm/SPIRV-Tools" revision="staging" groups="all scenario-runner emulation-layer"/>
+  <project path="dependencies/Vulkan-Headers" remote="github" name="KhronosGroup/Vulkan-Headers" revision="refs/tags/vulkan-sdk-1.4.328.1" groups="all scenario-runner emulation-layer"/>
+
+
 
   <project path="dependencies/llvm-project" remote="github" name="llvm/llvm-project" revision="802ea0eb78f7c974d4097c38587f4c207451d7ee" upstream="main" groups="all model-converter"/>
   <project path="dependencies/tosa_mlir_translator" remote="gitlab-arm" name="tosa/tosa-mlir-translator" revision="refs/tags/v2025.07.1" groups="all model-converter" sync-s="true" />
