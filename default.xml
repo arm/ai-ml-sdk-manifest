@@ -18,11 +18,11 @@ SPDX-License-Identifier: Apache-2.0
 
 
 
-  <project path="dependencies/llvm-project" remote="github" name="llvm/llvm-project" revision="802ea0eb78f7c974d4097c38587f4c207451d7ee" upstream="main" groups="all model-converter"/>
-  <project path="dependencies/tosa_mlir_translator" remote="gitlab-arm" name="tosa/tosa-mlir-translator" revision="refs/tags/v2025.07.1" groups="all model-converter" sync-s="true" />
+  <project path="dependencies/llvm-project" remote="github" name="llvm/llvm-project" revision="147e615a658db0c0679ff2814dbc1bc59ded5160" upstream="main" groups="all model-converter"/>
+  <project path="dependencies/tosa-tools" remote="gitlab-arm" name="tosa/tosa-tools" revision="v2025.11" groups="all model-converter"/>
 
   <project path="dependencies/argparse" remote="github" name="p-ranav/argparse" revision="refs/tags/v3.1" groups="all scenario-runner model-converter vgf-lib"/>
-  <project path="dependencies/flatbuffers" remote="github" name="google/flatbuffers" revision="refs/tags/v23.5.26" groups="all scenario-runner model-converter vgf-lib"/>
+  <project path="dependencies/flatbuffers" remote="github" name="google/flatbuffers" revision="refs/tags/v25.2.10" groups="all scenario-runner model-converter vgf-lib"/>
   <project path="dependencies/json" remote="github" name="nlohmann/json" revision="refs/tags/v3.11.3" groups="all scenario-runner vgf-lib model-converter"/>
   <project path="dependencies/pybind11" remote="github" name="pybind/pybind11" revision="refs/tags/v2.13.6" groups="all scenario-runner model-converter vgf-lib"/>
 
