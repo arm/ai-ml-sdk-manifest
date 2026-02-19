@@ -14,7 +14,7 @@ SPDX-License-Identifier: Apache-2.0
   <project path="dependencies/SPIRV-Cross" remote="github" name="KhronosGroup/SPIRV-Cross" revision="refs/tags/vulkan-sdk-1.4.328.1" groups="all emulation-layer"/>
   <project path="dependencies/SPIRV-Headers" remote="github" name="arm/SPIRV-Headers" revision="staging" groups="all scenario-runner emulation-layer"/>
   <project path="dependencies/SPIRV-Tools" remote="github" name="arm/SPIRV-Tools" revision="staging" groups="all scenario-runner emulation-layer"/>
-  <project path="dependencies/Vulkan-Headers" remote="github" name="KhronosGroup/Vulkan-Headers" revision="refs/tags/vulkan-sdk-1.4.328.1" groups="all scenario-runner emulation-layer"/>
+  <project path="dependencies/Vulkan-Headers" remote="github" name="KhronosGroup/Vulkan-Headers" revision="refs/tags/v1.4.343" groups="all scenario-runner emulation-layer"/>
 
 
 
