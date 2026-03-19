@@ -19,7 +19,7 @@ SPDX-License-Identifier: Apache-2.0
 
 
   <project path="dependencies/llvm-project" remote="github" name="llvm/llvm-project" revision="93c93ff199a1a2b1c7beb74c966080793a0b1afd" upstream="main" groups="all model-converter"/>
-  <project path="dependencies/tosa-tools" remote="gitlab-arm" name="tosa/tosa-tools" revision="refs/tags/v2026.02.0" groups="all model-converter"/>
+  <project path="dependencies/tosa-tools" remote="gitlab-arm" name="tosa/tosa-tools" revision="refs/tags/v2026.02.1" groups="all model-converter"/>
 
   <project path="dependencies/argparse" remote="github" name="p-ranav/argparse" revision="refs/tags/v3.1" groups="all scenario-runner model-converter vgf-lib"/>
   <project path="dependencies/flatbuffers" remote="github" name="google/flatbuffers" revision="refs/tags/v25.2.10" groups="all scenario-runner model-converter vgf-lib"/>
