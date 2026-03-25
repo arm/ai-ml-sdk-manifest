@@ -13,7 +13,7 @@ SPDX-License-Identifier: Apache-2.0
   <project path="dependencies/glslang" remote="github" name="KhronosGroup/glslang" revision="refs/tags/vulkan-sdk-1.4.341.0" groups="all scenario-runner emulation-layer"/>
   <project path="dependencies/SPIRV-Cross" remote="github" name="KhronosGroup/SPIRV-Cross" revision="refs/tags/vulkan-sdk-1.4.341.0" groups="all emulation-layer"/>
   <project path="dependencies/SPIRV-Headers" remote="github" name="KhronosGroup/SPIRV-Headers" revision="refs/tags/vulkan-sdk-1.4.341.0" groups="all scenario-runner emulation-layer"/>
-  <project path="dependencies/SPIRV-Tools" remote="github" name="arm/SPIRV-Tools" revision="staging" groups="all scenario-runner emulation-layer"/>
+  <project path="dependencies/SPIRV-Tools" remote="github" name="KhronosGroup/SPIRV-Tools" revision="refs/tags/vulkan-sdk-1.4.341.0" groups="all scenario-runner emulation-layer"/>
   <project path="dependencies/Vulkan-Headers" remote="github" name="KhronosGroup/Vulkan-Headers" revision="refs/tags/v1.4.343" groups="all scenario-runner emulation-layer"/>
   <project path="dependencies/DirectXShaderCompiler" remote="github" name="microsoft/DirectXShaderCompiler" revision="refs/tags/v1.8.2505" groups="all scenario-runner" sync-s="true"/>
 
