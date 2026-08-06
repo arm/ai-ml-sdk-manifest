@@ -10,11 +10,12 @@ SPDX-License-Identifier: Apache-2.0
   <default sync-c="true" sync-tags="false"/>
 
   <!-- dependencies start -->
-  <project path="dependencies/glslang" remote="github" name="KhronosGroup/glslang" revision="refs/tags/vulkan-sdk-1.4.350.0" groups="all scenario-runner emulation-layer"/>
-  <project path="dependencies/SPIRV-Cross" remote="github" name="KhronosGroup/SPIRV-Cross" revision="refs/tags/vulkan-sdk-1.4.350.0" groups="all emulation-layer"/>
-  <project path="dependencies/SPIRV-Headers" remote="github" name="KhronosGroup/SPIRV-Headers" revision="8c5559c134abcf432ec59db842404087b9906c1a" upstream="main" groups="all scenario-runner emulation-layer"/>
-  <project path="dependencies/SPIRV-Tools" remote="github" name="KhronosGroup/SPIRV-Tools" revision="605a0154c7743ed4239c0eb7f3c61f17ffde4fd0" upstream="main" groups="all scenario-runner emulation-layer"/>
-  <project path="dependencies/Vulkan-Headers" remote="github" name="KhronosGroup/Vulkan-Headers" revision="refs/tags/vulkan-sdk-1.4.350.0" groups="all scenario-runner emulation-layer"/>
+  <project path="dependencies/glslang" remote="github" name="KhronosGroup/glslang" revision="refs/tags/vulkan-sdk-1.4.357.0" groups="all scenario-runner emulation-layer"/>
+  <project path="dependencies/SPIRV-Cross" remote="github" name="KhronosGroup/SPIRV-Cross" revision="refs/tags/vulkan-sdk-1.4.357.0" groups="all emulation-layer"/>
+  <project path="dependencies/SPIRV-Headers" remote="github" name="KhronosGroup/SPIRV-Headers" revision="refs/tags/vulkan-sdk-1.4.357.0" upstream="main" groups="all scenario-runner emulation-layer"/>
+  <project path="dependencies/SPIRV-Tools" remote="github" name="KhronosGroup/SPIRV-Tools" revision="refs/tags/vulkan-sdk-1.4.357.0" upstream="main" groups="all scenario-runner emulation-layer"/>
+  <project path="dependencies/Vulkan-Headers" remote="github" name="KhronosGroup/Vulkan-Headers" revision="refs/tags/vulkan-sdk-1.4.357.0" groups="all scenario-runner emulation-layer"/>
+
   <project path="dependencies/DirectXShaderCompiler" remote="github" name="microsoft/DirectXShaderCompiler" revision="refs/tags/v1.9.2602" groups="all scenario-runner" sync-s="true"/>
 
   <project path="dependencies/llvm-project" remote="github" name="llvm/llvm-project" revision="3e04cdb3e977951679cfffdbb602cebc5925c4e7" upstream="main" groups="all model-converter"/>
