@@ -16,7 +16,7 @@ SPDX-License-Identifier: Apache-2.0
   <project path="dependencies/SPIRV-Tools" remote="github" name="KhronosGroup/SPIRV-Tools" revision="refs/tags/vulkan-sdk-1.4.357.0" upstream="main" groups="all scenario-runner emulation-layer"/>
   <project path="dependencies/Vulkan-Headers" remote="github" name="KhronosGroup/Vulkan-Headers" revision="refs/tags/vulkan-sdk-1.4.357.0" groups="all scenario-runner emulation-layer"/>
 
-  <project path="dependencies/DirectXShaderCompiler" remote="github" name="microsoft/DirectXShaderCompiler" revision="refs/tags/v1.9.2602" groups="all scenario-runner" sync-s="true"/>
+  <project path="dependencies/DirectXShaderCompiler" remote="github" name="microsoft/DirectXShaderCompiler" revision="refs/tags/v1.9.2607" groups="all scenario-runner" sync-s="true"/>
 
   <project path="dependencies/llvm-project" remote="github" name="llvm/llvm-project" revision="3e04cdb3e977951679cfffdbb602cebc5925c4e7" upstream="main" groups="all model-converter"/>
   <project path="dependencies/tosa-tools" remote="gitlab-arm" name="tosa/tosa-tools" revision="refs/tags/v2026.05.0" groups="all model-converter"/>
