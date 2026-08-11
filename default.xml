@@ -18,7 +18,7 @@ SPDX-License-Identifier: Apache-2.0
 
   <project path="dependencies/DirectXShaderCompiler" remote="github" name="microsoft/DirectXShaderCompiler" revision="refs/tags/v1.9.2607" groups="all scenario-runner" sync-s="true"/>
 
-  <project path="dependencies/llvm-project" remote="github" name="llvm/llvm-project" revision="3e04cdb3e977951679cfffdbb602cebc5925c4e7" upstream="main" groups="all model-converter"/>
+  <project path="dependencies/llvm-project" remote="github" name="llvm/llvm-project" revision="341abe2e90f1aea923afce842d3bdd962c136fe4" upstream="main" groups="all model-converter"/>
   <project path="dependencies/tosa-tools" remote="gitlab-arm" name="tosa/tosa-tools" revision="refs/tags/v2026.05.0" groups="all model-converter"/>
 
   <project path="dependencies/argparse" remote="github" name="p-ranav/argparse" revision="refs/tags/v3.2" groups="all scenario-runner model-converter vgf-lib"/>
