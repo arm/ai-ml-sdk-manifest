@@ -30,11 +30,11 @@ SPDX-License-Identifier: Apache-2.0
   <!-- dependencies end -->
 
   <!-- sw start -->
-  <project path="sw/model-converter" remote="github" name="arm/ai-ml-sdk-model-converter" revision="main" groups="all model-converter"/>
-  <project path="sw/scenario-runner" remote="github" name="arm/ai-ml-sdk-scenario-runner" revision="main" groups="all scenario-runner"/>
-  <project path="sw/vgf-lib" remote="github" name="arm/ai-ml-sdk-vgf-library" revision="main" groups="all scenario-runner model-converter vgf-lib workload-lib"/>
-  <project path="sw/emulation-layer" remote="github" name="arm/ai-ml-emulation-layer-for-vulkan" revision="main" groups="all emulation-layer"/>
-  <project path="sw/workload-lib" remote="github" name="arm/ai-ml-workload-library-for-vulkan" revision="main" groups="all workload-lib"/>
+  <project path="sw/model-converter" remote="github" name="arm/ai-ml-sdk-model-converter" revision="main" groups="all model-converter sw"/>
+  <project path="sw/scenario-runner" remote="github" name="arm/ai-ml-sdk-scenario-runner" revision="main" groups="all scenario-runner sw"/>
+  <project path="sw/vgf-lib" remote="github" name="arm/ai-ml-sdk-vgf-library" revision="main" groups="all scenario-runner model-converter vgf-lib workload-lib sw"/>
+  <project path="sw/emulation-layer" remote="github" name="arm/ai-ml-emulation-layer-for-vulkan" revision="main" groups="all emulation-layer sw"/>
+  <project path="sw/workload-lib" remote="github" name="arm/ai-ml-workload-library-for-vulkan" revision="main" groups="all workload-lib sw"/>
   <project path="." remote="github" name="arm/ai-ml-sdk-for-vulkan" revision="main" groups="all"/>
   <!-- sw end -->
 
