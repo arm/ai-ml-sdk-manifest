@@ -1,41 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-SPDX-FileCopyrightText: Copyright 2025 Arm Limited and/or its affiliates <open-source-office@arm.com>
-SPDX-License-Identifier: Apache-2.0
--->
+<?xml version='1.0' encoding='utf-8'?>
 <manifest>
-  <remote name="github" fetch="https://github.com/" alias="origin"/>
-  <remote name="gitlab-arm" fetch="https://gitlab.arm.com/" alias="origin"/>
-
-  <default sync-c="true" sync-tags="false"/>
-
+  <remote name="github" fetch="https://github.com/" alias="origin" />
+  <remote name="gitlab-arm" fetch="https://gitlab.arm.com/" alias="origin" />
+  <default sync-c="true" sync-tags="false" />
   <!-- dependencies start -->
-  <project path="dependencies/glslang" remote="github" name="KhronosGroup/glslang" revision="refs/tags/vulkan-sdk-1.4.357.0" groups="all scenario-runner emulation-layer workload-lib"/>
-  <project path="dependencies/SPIRV-Cross" remote="github" name="KhronosGroup/SPIRV-Cross" revision="refs/tags/vulkan-sdk-1.4.357.0" groups="all emulation-layer"/>
-  <project path="dependencies/SPIRV-Headers" remote="github" name="KhronosGroup/SPIRV-Headers" revision="refs/tags/vulkan-sdk-1.4.357.0" upstream="main" groups="all scenario-runner emulation-layer workload-lib"/>
-  <project path="dependencies/SPIRV-Tools" remote="github" name="KhronosGroup/SPIRV-Tools" revision="refs/tags/vulkan-sdk-1.4.357.0" upstream="main" groups="all scenario-runner emulation-layer workload-lib"/>
-  <project path="dependencies/Vulkan-Headers" remote="github" name="KhronosGroup/Vulkan-Headers" revision="refs/tags/vulkan-sdk-1.4.357.0" groups="all scenario-runner emulation-layer workload-lib"/>
-
-  <project path="dependencies/DirectXShaderCompiler" remote="github" name="microsoft/DirectXShaderCompiler" revision="refs/tags/v1.9.2607" groups="all scenario-runner workload-lib" sync-s="true"/>
-
-  <project path="dependencies/llvm-project" remote="github" name="llvm/llvm-project" revision="3a8bd232cfa8c08a6c7e88801696af65ed1562ea" upstream="main" groups="all model-converter"/>
-  <project path="dependencies/tosa-tools" remote="gitlab-arm" name="tosa/tosa-tools" revision="refs/tags/v2026.08.0" groups="all model-converter"/>
-
-  <project path="dependencies/argparse" remote="github" name="p-ranav/argparse" revision="refs/tags/v3.2" groups="all scenario-runner model-converter vgf-lib"/>
-  <project path="dependencies/flatbuffers" remote="github" name="google/flatbuffers" revision="refs/tags/v25.2.10" groups="all scenario-runner model-converter vgf-lib workload-lib"/>
-  <project path="dependencies/json" remote="github" name="nlohmann/json" revision="refs/tags/v3.12.0" groups="all scenario-runner vgf-lib model-converter emulation-layer"/>
-  <project path="dependencies/pybind11" remote="github" name="pybind/pybind11" revision="refs/tags/v3.1.0" groups="all scenario-runner model-converter vgf-lib"/>
-
-  <project path="dependencies/googletest" remote="github" name="google/googletest" revision="refs/tags/v1.17.0" groups="all scenario-runner emulation-layer model-converter vgf-lib workload-lib"/>
+  <project path="dependencies/glslang" remote="github" name="KhronosGroup/glslang" revision="refs/tags/vulkan-sdk-1.4.357.0" groups="all scenario-runner emulation-layer workload-lib" />
+  <project path="dependencies/SPIRV-Cross" remote="github" name="KhronosGroup/SPIRV-Cross" revision="refs/tags/vulkan-sdk-1.4.357.0" groups="all emulation-layer" />
+  <project path="dependencies/SPIRV-Headers" remote="github" name="KhronosGroup/SPIRV-Headers" revision="refs/tags/vulkan-sdk-1.4.357.0" upstream="main" groups="all scenario-runner emulation-layer workload-lib" />
+  <project path="dependencies/SPIRV-Tools" remote="github" name="KhronosGroup/SPIRV-Tools" revision="refs/tags/vulkan-sdk-1.4.357.0" upstream="main" groups="all scenario-runner emulation-layer workload-lib" />
+  <project path="dependencies/Vulkan-Headers" remote="github" name="KhronosGroup/Vulkan-Headers" revision="refs/tags/vulkan-sdk-1.4.357.0" groups="all scenario-runner emulation-layer workload-lib" />
+  <project path="dependencies/DirectXShaderCompiler" remote="github" name="microsoft/DirectXShaderCompiler" revision="refs/tags/v1.9.2607" groups="all scenario-runner workload-lib" sync-s="true" />
+  <project path="dependencies/llvm-project" remote="github" name="llvm/llvm-project" revision="3a8bd232cfa8c08a6c7e88801696af65ed1562ea" upstream="main" groups="all model-converter" />
+  <project path="dependencies/tosa-tools" remote="gitlab-arm" name="tosa/tosa-tools" revision="refs/tags/v2026.08.0" groups="all model-converter" />
+  <project path="dependencies/argparse" remote="github" name="p-ranav/argparse" revision="refs/tags/v3.2" groups="all scenario-runner model-converter vgf-lib" />
+  <project path="dependencies/flatbuffers" remote="github" name="google/flatbuffers" revision="refs/tags/v25.2.10" groups="all scenario-runner model-converter vgf-lib workload-lib" />
+  <project path="dependencies/json" remote="github" name="nlohmann/json" revision="refs/tags/v3.12.0" groups="all scenario-runner vgf-lib model-converter emulation-layer" />
+  <project path="dependencies/pybind11" remote="github" name="pybind/pybind11" revision="refs/tags/v3.1.0" groups="all scenario-runner model-converter vgf-lib" />
+  <project path="dependencies/googletest" remote="github" name="google/googletest" revision="refs/tags/v1.17.0" groups="all scenario-runner emulation-layer model-converter vgf-lib workload-lib" />
   <!-- dependencies end -->
-
   <!-- sw start -->
-  <project path="sw/model-converter" remote="github" name="arm/ai-ml-sdk-model-converter" revision="main" groups="all model-converter sw"/>
-  <project path="sw/scenario-runner" remote="github" name="arm/ai-ml-sdk-scenario-runner" revision="main" groups="all scenario-runner sw"/>
-  <project path="sw/vgf-lib" remote="github" name="arm/ai-ml-sdk-vgf-library" revision="main" groups="all scenario-runner model-converter vgf-lib workload-lib sw"/>
-  <project path="sw/emulation-layer" remote="github" name="arm/ai-ml-emulation-layer-for-vulkan" revision="main" groups="all emulation-layer sw"/>
-  <project path="sw/workload-lib" remote="github" name="arm/ai-ml-workload-library-for-vulkan" revision="main" groups="all workload-lib sw"/>
-  <project path="." remote="github" name="arm/ai-ml-sdk-for-vulkan" revision="main" groups="all"/>
+  <project path="sw/model-converter" remote="github" name="arm/ai-ml-sdk-model-converter" revision="refs/tags/release/v0.11.0" groups="all model-converter sw" />
+  <project path="sw/scenario-runner" remote="github" name="arm/ai-ml-sdk-scenario-runner" revision="refs/tags/release/v0.11.0" groups="all scenario-runner sw" />
+  <project path="sw/vgf-lib" remote="github" name="arm/ai-ml-sdk-vgf-library" revision="refs/tags/release/v0.11.0" groups="all scenario-runner model-converter vgf-lib workload-lib sw" />
+  <project path="sw/emulation-layer" remote="github" name="arm/ai-ml-emulation-layer-for-vulkan" revision="refs/tags/release/v0.11.0" groups="all emulation-layer sw" />
+  <project path="sw/workload-lib" remote="github" name="arm/ai-ml-workload-library-for-vulkan" revision="refs/tags/release/v0.11.0" groups="all workload-lib sw" />
+  <project path="." remote="github" name="arm/ai-ml-sdk-for-vulkan" revision="refs/tags/release/v2026.09.0" groups="all" />
   <!-- sw end -->
-
 </manifest>
